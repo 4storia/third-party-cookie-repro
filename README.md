@@ -1,7 +1,7 @@
 This repo provides a minimal reproduction of what I believe is incorrect functionality from the new "Third-party Storage Partitioning" flag.
 
 Context:
-Assuming I'm reading the spec correctly, cross-origin iframes should be able to access localStorage assuming `document.hasStorageAccess()` is `true`. If it is not, a developer should be able to prompt a user for access to this functionality via `document.requestStorageAccess()`. However, it appears that right now `document.hasStorageAccess()` returns `true` even in cases where a given iframe does not have storage access. This renders the iframe unable to share local storage context with a top level window of the same domain.
+Assuming I'm reading the spec correctly, cross-origin iframes should be able to access localStorage as if they were a top level window when `document.hasStorageAccess()` is `true`. If it is not, a developer should be able to prompt a user for access to this functionality via `document.requestStorageAccess()`. However, it appears that right now `document.hasStorageAccess()` returns `true` even in cases where a given iframe does not have storage access. This renders the iframe unable to share local storage context with a top level window of the same domain.
 
 The repro setup to prove this to be the case requires 2 different domains - This example uses `4storia.github.io` and `blakelee.github.io`.
 
